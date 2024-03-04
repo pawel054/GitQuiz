@@ -11,7 +11,7 @@ namespace GitQuiz
 {
     public partial class MainPage : ContentPage
     {
-        private int currentQuestionINdex = 1;
+        private int currentQuestionIndex = 0;
         private int currentScore = 0;
         private List<int> questions = new List<int>();
         private Stopwatch stopwatch = new Stopwatch();
