@@ -120,15 +120,13 @@ namespace GitQuiz
             questionLabel.IsVisible = false;
             answerEntry.IsVisible = false;
             submitAnswerButton.IsVisible = false;
-            resultPoints.Text = curentScore.ToString();
+            resultPoints.Text = currentScore.ToString();
             resultTime.Text = totalTime.ToString("F2");
         }
 
         private void SaveResult(string userName, double totalTime, int score)
         {
             App.Database.SaveResultAsync(new UserResult(userName, totalTime, score));
-
-            GenerateQuestions();
         }
     }
 }

@@ -26,7 +26,7 @@ namespace GitQuiz
             return database.Table<UserResult>().Where(i => i.UserName == userName).FirstOrDefaultAsync();
         }
 
-        public async Task SaveResult(UserResult result)
+        public async Task SaveResultAsync(UserResult result)
         {
             var existingResult = await GetUserName(result.UserName);
 
