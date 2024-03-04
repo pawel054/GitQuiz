@@ -21,7 +21,7 @@ namespace GitQuiz
             InitializeComponent();
             GenerateQuestions();
         }
-
+        
         private void GenerateQuestions()
         {
             Random random = new Random();
@@ -99,6 +99,36 @@ namespace GitQuiz
 
             await Task.Delay(2500);
             ShowNextQuestion();
+        }
+        
+        private void FinishQuiz()
+        {
+            double totalTime = times.Sum();
+            SaveResult(userNameEntry.Text, totalTime, currentScore);
+            DisplayFinalResults(totalTime);
+        }
+
+        private async void ViewScoresClicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new ScoresPage());
+        }
+
+        private void DisplayFinalResults(double totalTime)
+        {
+            finishGameView.IsVisible = true;
+            gameView.IsVisible = false;
+            questionLabel.IsVisible = false;
+            answerEntry.IsVisible = false;
+            submitAnswerButton.IsVisible = false;
+            resultPoints.Text = curentScore.ToString();
+            resultTime.Text = totalTime.ToString("F2");
+        }
+
+        private void SaveResult(string userName, double totalTime, int score)
+        {
+            App.Database.SaveResultAsync(new UserResult(userName, totalTime, score));
+
+            GenerateQuestions();
         }
     }
 }
