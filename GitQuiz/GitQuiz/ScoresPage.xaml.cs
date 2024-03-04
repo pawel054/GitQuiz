@@ -20,7 +20,7 @@ namespace GitQuiz
 
         private async void LoadScores()
         {
-            var scores = await App.Database.GetResultAsync();
+            var scores = await App.Database.GetResultsAsync();
 
             var sortedScores = scores.OrderByDescending(score => score.Score).ThenBy(score => score.TotalTime).ToList();
 
